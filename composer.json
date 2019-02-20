@@ -21,6 +21,7 @@
         "hieu-le/active": "^3.5",
         "laravel/framework": "5.7.*",
         "laravel/socialite": "^3.0",
+        "laravel/telescope": "^1.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
         "spatie/laravel-cors": "^1.2",
