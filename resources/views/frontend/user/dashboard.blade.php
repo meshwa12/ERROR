@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+<!--@extends('frontend.layouts.footer')-->
 
 @section('content')
     <div class="row">
@@ -123,14 +124,42 @@
                                     </div><!--panel-->
                                 </div><!--col-md-6-->
 
-                            </div><!--row-->
+                                <!--<div class = "footer">
+                                    <h2>Footer</h2>
+                                
+                                </div>
+                            </div><--row-->
 
                         </div><!--col-md-8-->
 
                     </div><!--row-->
 
-                </div><!--panel body-->
 
+                </div><!--panel body-->
+                <div class="footer">
+                    <div class="col-container">
+                    <div class="col">
+                        <h2>About Us</h2>
+                       <p> PAL is simply Process Assets Library where all projects done by Cygnet Infotech Company is saved here, which is accessible to Cygnet Employees only. The purpose of this website is to provide Secured code to the Cygnetians to save the time and increase the performance. </p>
+                       <hr>
+                       <h2>Follow Us</h2>
+                       <div class="icon">
+                       <i class="fa fa-facebook"></i>
+                       <i class="fa fa-youtube"></i>
+                       <i class="fa fa-twitter"></i>
+                       <i class="fa fa-linkedin"></i>
+                       <i class="fa fa-googleplus"></i>
+                       </div>
+                    </div>
+
+                    <div class="col">
+                       <p> Hello</p>
+                    </div>
+
+                    <div class="col">
+                       <p> Hello </p>
+                    </div>
+                    </div>
             </div><!-- panel -->
 
         </div><!-- col-md-10 -->

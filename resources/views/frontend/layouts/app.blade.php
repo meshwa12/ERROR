@@ -39,6 +39,15 @@
                 echo $google_analytics;
             }
         ?>
+        <!--<style type="text/css">
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: black;
+            margin-top: 20px;
+            font-color: white;
+        }
+        </style>-->
     </head>
     <body id="app-layout">
         <div id="app">
