@@ -1,29 +1,27 @@
 <?php
 
-namespace App\Models\Access\User;
-
-use App\Models\Access\User\Traits\Attribute\UserAttribute;
-use App\Models\Access\User\Traits\Relationship\UserRelationship;
-use App\Models\Access\User\Traits\Scope\UserScope;
-use App\Models\Access\User\Traits\UserAccess;
-use App\Models\Access\User\Traits\UserSendPasswordReset;
+namespace App\Models\Access\Project;
+use App\Models\Access\Project;
+//use App\Models\Access\Project\Traits\Attribute\ProjectAttribute;
+//use App\Models\Access\Project\Traits\Relationship\ProjectRelationship;
+use App\Models\Access\Project\Traits\Scope\ProjectScope;
+use App\Models\Access\Project\Traits\ProjectAccess;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
- * Class User.
+ * Class Project.
  */
-class User extends Authenticatable implements JWTSubject
+class project implements JWTSubject
 {
-    use UserScope,
-        UserAccess,
+    use ProjectScope,
+        ProjectAccess,
         Notifiable,
-        SoftDeletes,
-        UserAttribute,
-        UserRelationship,
-        UserSendPasswordReset;
+        SoftDeletes;
+        //ProjectAttribute,
+       // ProjectRelationship;
+       
     /**
      * The database table used by the model.
      *
@@ -37,12 +35,10 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
+        'project_name',
+        'project_details',
+        'file',
         'status',
-        'confirmation_code',
-        'confirmed',
         'created_by',
         'updated_by',
     ];
@@ -52,7 +48,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+   
 
     /**
      * @var array
@@ -65,7 +61,7 @@ class User extends Authenticatable implements JWTSubject
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = config('access.users_table');
+        $this->table = config('access.project_table');
     }
 
     /**
@@ -86,17 +82,13 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [
-            'id'              => $this->id,
-            'first_name'      => $this->first_name,
-            'last_name'       => $this->last_name,
-            'email'           => $this->email,
-            'picture'         => $this->getPicture(),
-            'confirmed'       => $this->confirmed,
-            'role'            => optional($this->roles()->first())->name,
-            'permissions'     => $this->permissions()->get(),
-            'status'          => $this->status,
-            'created_at'      => $this->created_at->toIso8601String(),
-            'updated_at'      => $this->updated_at->toIso8601String(),
+            'id'                    => $this->id,
+            'project_name'          => $this->project_name,
+            'project_details'       => $this->project_details,
+            'file'                  => $this->getFile(),
+            'status'                => $this->status,
+            'created_at'            => $this->created_at->toIso8601String(),
+            'updated_at'            => $this->updated_at->toIso8601String(),
         ];
     }
 }

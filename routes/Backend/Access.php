@@ -82,4 +82,66 @@ Route::group([
             Route::post('permission/get', 'PermissionTableController')->name('permission.get');
         });
     });
-});
+        /*
+
+
+
+        
+        for project
+
+
+        *******
+        ******
+
+
+
+
+
+
+        */
+        Route::group(['namespace' => 'Project'], function () {
+            /*
+             * For DataTables
+             */
+            Route::post('project/get', 'ProjectTableController')->name('project.get');
+
+            /*
+             * Project Status'
+
+             */
+            Route::get('project/deleted', 'ProjectStatusController@getDeleted')->name('project.deleted');
+
+            /*
+             * project CRUD
+             */
+            Route::resource('project', 'ProjectController');
+            /*
+             * Deleted Project
+             */
+            Route::group(['prefix' => 'project/{deletedProject}'], function () {
+                Route::get('delete', 'ProjectStatusController@delete')->name('project.delete-permanently');
+                Route::get('restore', 'ProjectStatusController@restore')->name('project.restore');
+            });
+        });
+
+        /*
+        * Role Management
+        */
+        Route::group(['namespace' => 'Role'], function () {
+            Route::resource('role', 'RoleController', ['except' => ['show']]);
+
+            //For DataTables
+            Route::post('role/get', 'RoleTableController')->name('role.get');
+        });
+
+        /*
+        * Permission Management
+        */
+        Route::group(['namespace' => 'Permission'], function () {
+            Route::resource('permission', 'PermissionController', ['except' => ['show']]);
+
+            //For DataTables
+            Route::post('permission/get', 'PermissionTableController')->name('permission.get');
+        });
+    
+    });

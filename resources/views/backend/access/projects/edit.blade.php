@@ -1,58 +1,59 @@
 @extends ('backend.layouts.app')
 
-@section ('title', trans('labels.backend.access.users.management') . ' | ' . trans('labels.backend.access.users.edit'))
+@section ('title', /*trans('labels.backend.access.projects.management') . ' | ' . trans('labels.backend.access.projects.edit'*/))
 
 @section('page-header')
     <h1>
-        {{ trans('labels.backend.access.users.management') }}
-        <small>{{ trans('labels.backend.access.users.edit') }}</small>
+        {{ trans('labels.backend.access.projects.management') }}
+        <small>{{ trans('labels.backend.access.projects.edit') }}</small>
     </h1>
 @endsection
 
 @section('content')
-    {{ Form::model($user, ['route' => ['admin.access.user.update', $user], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH']) }}
+    {{ Form::model($user, ['route' => ['admin.access.project.update', $user], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH']) }}
 
         <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title">{{ trans('labels.backend.access.users.edit') }}</h3>
+                
+                <h3 class="box-title">{{ trans('labels.backend.access.projects.edit') }}</h3>
 
                 <div class="box-tools pull-right">
-                    @include('backend.access.includes.partials.user-header-buttons')
+                    @include('backend.access.includes.partials.project-header-buttons')
                 </div><!--box-tools pull-right-->
             </div><!-- /.box-header -->
 
             <div class="box-body">
-                {{-- First Name --}}
+                {{-- Project Name --}}
                 <div class="form-group">
-                    {{ Form::label('name', trans('validation.attributes.backend.access.users.firstName'), ['class' => 'col-lg-2 control-label required']) }}
+                    {{ Form::label('projectname', trans('validation.attributes.backend.access.projects.projectname'), ['class' => 'col-lg-2 control-label required']) }}
 
                     <div class="col-lg-10">
-                        {{ Form::text('first_name', null, ['class' => 'form-control box-size', 'placeholder' => trans('validation.attributes.backend.access.users.firstName'), 'required' => 'required']) }}
+                        {{ Form::text('project_name', null, ['class' => 'form-control box-size', 'placeholder' => trans('validation.attributes.backend.access.projects.projectname'), 'required' => 'required']) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
 
-                {{-- Last Name --}}
+                {{-- Project Details --}}
                 <div class="form-group">
-                    {{ Form::label('name', trans('validation.attributes.backend.access.users.lastName'), ['class' => 'col-lg-2 control-label required']) }}
+                    {{ Form::label('projectdetails', trans('validation.attributes.backend.access.projects.projectdetails'), ['class' => 'col-lg-2 control-label required']) }}
 
                     <div class="col-lg-10">
-                        {{ Form::text('last_name', null, ['class' => 'form-control box-size', 'placeholder' => trans('validation.attributes.backend.access.users.lastName'), 'required' => 'required']) }}
+                        {{ Form::text('project_details', null, ['class' => 'form-control box-size', 'placeholder' => trans('validation.attributes.backend.access.projects.projectdetails'), 'required' => 'required']) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
 
-                {{-- Email --}}
+                {{-- File --}}
                 <div class="form-group">
-                    {{ Form::label('email', trans('validation.attributes.backend.access.users.email'), ['class' => 'col-lg-2 control-label required']) }}
+                    {{ Form::label('file', trans('validation.attributes.backend.access.projects.file'), ['class' => 'col-lg-2 control-label required']) }}
 
                     <div class="col-lg-10">
-                        {{ Form::text('email', null, ['class' => 'form-control box-size', 'placeholder' => trans('validation.attributes.backend.access.users.email'), 'required' => 'required']) }}
+                        {{ Form::text('file', null, ['class' => 'form-control box-size', 'placeholder' => trans('validation.attributes.backend.access.projects.file'), 'required' => 'required']) }}
                     </div><!--col-lg-10-->
                 </div><!--form control-->
 
                 {{-- Status --}}
                 @if ($user->id != 1)
                     <div class="form-group">
-                        {{ Form::label('status', trans('validation.attributes.backend.access.users.active'), ['class' => 'col-lg-2 control-label']) }}
+                        {{ Form::label('status', trans('validation.attributes.backend.access.projects.active'), ['class' => 'col-lg-2 control-label']) }}
                         <div class="col-lg-1">
                                 <div class="control-group">
                                     <label class="control control--checkbox">
@@ -63,23 +64,10 @@
                         </div><!--col-lg-1-->
                     </div><!--form control-->
 
-                    {{-- Confirmed --}}
-                    <div class="form-group">
-                        {{ Form::label('confirmed', trans('validation.attributes.backend.access.users.confirmed'), ['class' => 'col-lg-2 control-label']) }}
-
-                        <div class="col-lg-1">
-                            <div class="control-group">
-                                <label class="control control--checkbox">
-                                    {{ Form::checkbox('confirmed', '1', $user->confirmed == 1) }}
-                                    <div class="control__indicator"></div>
-                                </label>
-                            </div>
-                        </div><!--col-lg-1-->
-                    </div><!--form control-->
-
+                   
                     {{-- Associated Roles --}}
                     <div class="form-group">
-                        {{ Form::label('status', trans('validation.attributes.backend.access.users.associated_roles'), ['class' => 'col-lg-2 control-label']) }}
+                        {{ Form::label('status', trans('validation.attributes.backend.access.projects.associated_roles'), ['class' => 'col-lg-2 control-label']) }}
 
                         <div class="col-lg-8">
                             @if (count($roles) > 0)
@@ -92,14 +80,14 @@
                                         (
                                             <span class="show-text">{{ trans('labels.general.show') }}</span>
                                             <span class="hide-text hidden">{{ trans('labels.general.hide') }}</span>
-                                            {{ trans('labels.backend.access.users.permissions') }}
+                                            {{ trans('labels.backend.access.projects.permissions') }}
                                         )
                                     </a>
                                     </label>
                                     </div>
                                     <div class="permission-list hidden" data-role="role_{{$role->id}}">
                                         @if ($role->all)
-                                            {{ trans('labels.backend.access.users.all_permissions') }}
+                                            {{ trans('labels.backend.access.projects.all_permissions') }}
                                         @else
                                             @if (count($role->permissions) > 0)
                                                 <blockquote class="small">
@@ -108,13 +96,13 @@
                                                     @endforeach
                                                 </blockquote>
                                             @else
-                                                {{ trans('labels.backend.access.users.no_permissions') }}<br/><br/>
+                                                {{ trans('labels.backend.access.projects.no_permissions') }}<br/><br/>
                                             @endif
                                         @endif
                                     </div><!--permission list-->
                                 @endforeach
                             @else
-                                {{ trans('labels.backend.access.users.no_roles') }}
+                                {{ trans('labels.backend.access.projects.no_roles') }}
                             @endif
                         </div><!--col-lg-3-->
                     </div><!--form control-->
@@ -147,7 +135,7 @@
 
                 @endif
                 <div class="edit-form-btn">
-                    {{ link_to_route('admin.access.user.index', trans('buttons.general.cancel'), [], ['class' => 'btn btn-danger btn-md']) }}
+                    {{ link_to_route('admin.access.project.index', trans('buttons.general.cancel'), [], ['class' => 'btn btn-danger btn-md']) }}
                     {{ Form::submit(trans('buttons.general.crud.update'), ['class' => 'btn btn-primary btn-md']) }}
                     <div class="clearfix"></div>
                 </div>
@@ -167,8 +155,8 @@
     <script type="text/javascript">
         Backend.Utils.documentReady(function(){
             csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-            Backend.Users.selectors.getPremissionURL = "{{ route('admin.get.permission') }}";
-            Backend.Users.init("edit");
+            Backend.Projects.selectors.getPremissionURL = "{{ route('admin.get.permission') }}";
+            Backend.Projects.init("edit");
         });
         window.onload = function () {
             Backend.Users.windowloadhandler();

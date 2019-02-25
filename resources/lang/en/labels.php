@@ -90,7 +90,25 @@ return [
                     'roles'          => 'Roles',
                     'total'          => 'user total|users total',
                 ],
-
+                'project' => [
+                
+                'create'              => 'Create Project',
+                'deleted'             => 'Deleted Project',
+                'edit'                => 'Edit Project',
+                'management'          => 'Project Management',
+                
+                'table' => [
+                    
+                    'created'        => 'Created|created|add',
+                    'email'          => 'E-mail|email',
+                    'id'             => 'ID',
+                    'last_updated'   => 'Last Updated',
+                    'project_name'   => 'Project Name',
+                    'project_details'=> 'Project Details',
+                    'no_deleted'     => 'No Deleted Project',
+                    'total'          => 'project total|projects total',
+                ],
+],
                 'tabs' => [
                     'titles' => [
                         'overview' => 'Overview',

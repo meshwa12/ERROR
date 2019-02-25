@@ -1,9 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+
+namespace App\Http\Controllers\Backend\Access\Project;
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\Access\Project\CreateProjectRequest;
+use App\Http\Requests\Backend\Access\Project\DeleteProjectRequest;
+use App\Http\Requests\Backend\Access\Project\EditProjectRequest;
+use App\Http\Requests\Backend\Access\Project\ManageProjectRequest;
+use App\Http\Requests\Backend\Access\Project\ShowProjectRequest;
+use App\Http\Requests\Backend\Access\Project\StoreProjectRequest;
+use App\Http\Requests\Backend\Access\Project\UpdateProjectRequest;
+use App\Http\Responses\Backend\Access\Project\CreateResponse;
+use App\Http\Responses\Backend\Access\Project\EditResponse;
+use App\Http\Responses\Backend\Access\Project\ShowResponse;
+use App\Http\Responses\RedirectResponse;
+use App\Http\Responses\ViewResponse;
+use App\Models\Access\Permission\Permission;
+use App\Models\Access\Project\Project;
+//use App\Repositories\Backend\Access\Role\RoleRepository;
+use App\Repositories\Backend\Access\Project\ProjectRepository;
 class ProjectController extends Controller
 {
     /**
@@ -11,9 +28,15 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+      public function __construct(ProjectRepository $projects)
+    {
+        $this->projects = $projects;
+       
+    }
     public function index()
     {
-        //
+        $projects=project::find($proj_id);
+          return  ViewResponse('backend.access.projects.index')->with('projects',$projects);
     }
 
     /**
@@ -23,7 +46,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+         return view('backend.access.projects.add');
     }
 
     /**
@@ -34,7 +57,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -45,7 +68,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

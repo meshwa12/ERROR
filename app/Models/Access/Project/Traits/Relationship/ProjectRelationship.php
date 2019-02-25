@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Access\User\Traits\Relationship;
+namespace App\Models\Access\Project\Traits\Relationship;
 
-use App\Models\Access\User\SocialLogin;
+use App\Models\Access\Project\SocialLogin;
 use App\Models\System\Session;
 
 /**

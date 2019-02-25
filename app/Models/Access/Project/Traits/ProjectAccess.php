@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Access\User\Traits;
+namespace App\Models\Access\Project\Traits;
 
 /**
  * Class UserAccess.
  */
-trait UserAccess
+trait ProjectAccess
 {
     /**
      * Checks if the user has a Role by its name or id.
@@ -321,7 +321,7 @@ trait UserAccess
     /**
      * Detach permission form current User.
      *
-     * @param object|array $permission
+     * @param obj ect|array $permission
      *
      * @return void
      */

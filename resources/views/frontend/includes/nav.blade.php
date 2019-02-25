@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-           {{--   @if(settings()->logo)
+             @if(settings()->logo)
             <a href="{{ route('frontend.index') }}" class="logo"><img height="48" width="226" class="navbar-brand" src="{{route('frontend.index')}}/img/site_logo/{{settings()->logo}}"></a>
             @else --}}
              {{ link_to_route('frontend.index',app_name(), [], ['class' => 'navbar-brand']) }}
@@ -50,6 +50,7 @@
                         <ul class="dropdown-menu" role="menu">
                             @permission('view-backend')
                                 <li>{{ link_to_route('admin.dashboard', trans('navs.frontend.user.administration')) }}</li>
+                                <li>{{ link_to_route('admin.dashboard', trans('navs.frontend.project.administration')) }}</li>
                             @endauth
 
                             <li>{{ link_to_route('frontend.user.account', trans('navs.frontend.user.account')) }}</li>
@@ -57,7 +58,9 @@
                         </ul>
                     </li>
                 @endif
+                @endif
             </ul>
         </div><!--navbar-collapse-->
-    </div><!--container-->
+    </div>
+    <!--container-->
 </nav>

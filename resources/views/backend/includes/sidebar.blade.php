@@ -31,6 +31,13 @@
                         </a>
                     </li>
                     @endauth
+                    @permission('view-project-management')
+                    <li class="{{ active_class(Active::checkUriPattern('admin/access/project*')) }}">
+                        <a href="{{ route('admin.access.project.index') }}">
+                            <span>{{ trans('labels.backend.access.projects.management') }}</span>
+                        </a>
+                    </li>
+                    @endauth
                     @permission('view-role-management')
                     <li class="{{ active_class(Active::checkUriPattern('admin/access/role*')) }}">
                         <a href="{{ route('admin.access.role.index') }}">

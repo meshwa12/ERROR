@@ -1,4 +1,6 @@
-@extends ('backend.layouts.app')
+ 
+
+ @extends ('backend.layouts.app')
 
 @section ('title', trans('labels.backend.access.permissions.management'))
 

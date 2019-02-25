@@ -5,28 +5,28 @@ namespace App\Http\Controllers\Backend\Access\Project;
 use App\Exceptions\GeneralException;
 use App\Helpers\Auth\Auth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\Access\User\ManageProjectRequest;
-use App\Models\Access\User\User;
+use App\Http\Requests\Backend\Access\Project\ManageProjectRequest;
+use App\Models\Access\Project\Project;
 
 /**
  * Class UserAccessController.
  */
-class UserAccessController extends Controller
+class ProjectAccessController extends Controller
 {
     /**
-     * @param User              $user
-     * @param ManageUserRequest $request
+     * @param Project              $project
+     * @param ManageProjectRequest $request
      *
      * @throws GeneralException
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function loginAs(User $user, ManageUserRequest $request)
+    public function loginAs(Project $project, ManageProjectRequest $request)
     {
         // Overwrite who we're logging in as, if we're already logged in as someone else.
-        if (session()->has('admin_user_id') && session()->has('temp_user_id')) {
+        if (session()->has('admin_project_id') && session()->has('temp_project_id')) {
             // Let's not try to login as ourselves.
-            if (access()->id() == $user->id || session()->get('admin_user_id') == $user->id) {
+            if (access()->id() == $project->id || session()->get('admin_project_id') == $user->id) {
                 throw new GeneralException('Do not try to login as yourself.');
             }
 

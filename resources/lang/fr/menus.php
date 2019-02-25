@@ -51,6 +51,9 @@ return [
                 'deactivated-users' => 'Utilisateurs désactivés',
                 'deleted-users'     => 'Utilisateurs supprimés',
             ],
+            'projects'=>[
+            ]
+
         ],
 
         'log-viewer' => [
